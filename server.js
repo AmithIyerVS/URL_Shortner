@@ -29,7 +29,6 @@ app.get('/longUrls', async (req,res)=>{
     const shortUrls = await ShortUrl.find()
 
     if (!fullUrlDoc) {
-        // Handle the case when no matching document is found
         return res.status(404).json({ error: 'Short URL not found' });
       }
 
@@ -46,7 +45,7 @@ app.get('/longUrls', async (req,res)=>{
 app.get('/:shortUrl',async (req,res)=>{
     const shortUrl=await ShortUrl.findOne({short:req.params.shortUrl})
     if(shortUrl==null) return res.sendStatus(404).json({error:'url is required'})
-    console.log("asdfgh")
+    // console.log("asdfgh")
     // shortUrl.deleteOne
     shortUrl.clicks++;
     shortUrl.save()
@@ -61,4 +60,4 @@ app.delete('/deleteUrl/:id', async (req, res) => {
     
 });
 
-app.listen(process.env.PORT || 5000);
+app.listen(5000);
